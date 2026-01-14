@@ -1,0 +1,6 @@
+node_modules/
+auth.json
+session.json
+uu_session.json
+.env
+output/
