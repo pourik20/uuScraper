@@ -1,4 +1,4 @@
-# uuBook Scraper
+# uuScraper
 
 A Node.js tool designed to scrape [uuBookKit](https://www.uubookkit.com/) books and compile them into a single PDF file.
 
@@ -46,7 +46,20 @@ node index.js "https://uuapp.plus4u.net/uu-bookkit-maing01/..."
 
 The final PDF will be saved in the `output/` directory with the name of the book.
 
+## Disclaimer
+
+This tool is for educational purposes only. The authors are not responsible for any misuse of this tool or violations of Terms of Service. Please respect copyright laws and the platform's rules.
+
+## Known Limitations
+
+- **UI Changes**: This scraper relies on specific HTML classes (e.g., buttons, readers). If the platform updates its design, the scraper may break and require code updates.
+
 ## Troubleshooting
 
+- **Browsers Not Found**: If you see an error about missing browsers, run:
+  ```bash
+  npx playwright install
+  ```
 - **Login Issues**: If the scraper fails to detect login, try closing the browser and running the command again.
-- **Timeout**: If your connection is slow, you may need to adjust the timeouts in `scraper.js`.
+- **Timeout**: If your connection is slow, the "smart wait" logic usually handles it, but very slow connections might still time out.
+

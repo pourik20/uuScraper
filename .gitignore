@@ -4,3 +4,7 @@ session.json
 uu_session.json
 .env
 output/
+temp_pdfs/
+*.md
+!README.md
+

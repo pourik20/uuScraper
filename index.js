@@ -8,7 +8,7 @@ async function main() {
     }
 
     const bookUrl = args[0];
-    console.log(`Executing Order 66: ${bookUrl}`);
+    console.log(`\nInitializing uuScraper for: ${bookUrl}\n`);
 
     const scraper = new Scraper(bookUrl);
     
@@ -17,7 +17,9 @@ async function main() {
         await scraper.login();
         await scraper.scrape();
     } catch (error) {
-        console.error('An error occurred:', error);
+        console.error('\nCRITICAL FAILURE: Operation aborted due to an error.');
+        console.error(error);
+        process.exit(1);
     } finally {
         await scraper.close();
     }
