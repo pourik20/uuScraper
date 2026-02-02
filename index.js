@@ -1,25 +1,25 @@
-const Scrapper = require('./scrapper');
+const Scraper = require('./scraper');
 
 async function main() {
     const args = process.argv.slice(2);
     if (args.length === 0) {
-        console.error('Použití: node index.js <url-knihy-clena-odboje>');
+        console.error('Usage: node index.js <book-url>');
         process.exit(1);
     }
 
     const bookUrl = args[0];
-    console.log(`Startuji uuBook Protocol Droid pro: ${bookUrl}`);
+    console.log(`Executing Order 66: ${bookUrl}`);
 
-    const scrapper = new Scrapper(bookUrl);
+    const scraper = new Scraper(bookUrl);
     
     try {
-        await scrapper.init();
-        await scrapper.login();
-        await scrapper.scrape();
+        await scraper.init();
+        await scraper.login();
+        await scraper.scrape();
     } catch (error) {
         console.error('An error occurred:', error);
     } finally {
-        await scrapper.close();
+        await scraper.close();
     }
 }
 
