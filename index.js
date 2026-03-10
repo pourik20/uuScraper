@@ -1,27 +1,27 @@
-const AdvancedScraper = require('./advanced_scraper');
+const Scraper = require('./scraper');
 
 async function main() {
     const args = process.argv.slice(2);
     if (args.length === 0) {
-        console.log('Usage: node index.js <url> [format: markdown|pdf|both]');
+        console.error('Usage: node index.js <book-url>');
         process.exit(1);
     }
 
-    const url = args[0];
-    const format = args[1] || 'both';
+    const bookUrl = args[0];
+    console.log(`\nInitializing uuScraper for: ${bookUrl}\n`);
 
-    console.log(`\n--- uuScraper Advanced (Markdown + PDF) ---`);
-    console.log(`Target: ${url}`);
-    console.log(`Format: ${format}\n`);
-
-    const scraper = new AdvancedScraper(url, { format });
+    const scraper = new Scraper(bookUrl);
     
     try {
-        await scraper.run();
-        console.log('\nAll done! Your files are in the output/ directory.');
+        await scraper.init();
+        await scraper.login();
+        await scraper.scrape();
     } catch (error) {
-        console.error('\nFATAL ERROR:', error.message);
+        console.error('\nCRITICAL FAILURE: Operation aborted due to an error.');
+        console.error(error);
         process.exit(1);
+    } finally {
+        await scraper.close();
     }
 }
 
